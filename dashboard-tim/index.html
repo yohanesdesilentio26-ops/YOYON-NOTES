@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dashboard kinerja tim: kelola proyek, step, timeline, dan cetak lembar kerja.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f5a524'/%3E%3Cpath d='M7 23V14M13 23V8M19 23v-6M25 23H5' stroke='%232a1a02' stroke-width='2.4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<title>Ruang Tim — Dashboard Kinerja</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="report.css?v=2">
+</head>
+<body>
+  <div class="app">
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M4 19V10"/><path d="M10 19V5"/><path d="M16 19v-6"/><path d="M22 19H2"/></svg>
+        </div>
+        <div class="txt">
+          <b id="brandTeamName">Ruang Tim</b>
+          <span>Dashboard Kinerja</span>
+        </div>
+      </div>
+
+      <button class="side-add" type="button" data-act="add-project">
+        <span class="plus" aria-hidden="true">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+        Tambah Proyek
+      </button>
+
+      <div class="side-label">
+        <span>Menu</span>
+      </div>
+
+      <div class="side-menu">
+        <button class="side-menu-item" type="button" data-act="open-tasks" id="tasksMenuBtn">
+          <span class="smi-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8M13 12h8M13 18h8"/></svg>
+          </span>
+          <span class="smi-txt">Tugas Saya</span>
+          <span class="smi-badge" id="tasksBadge" hidden>0</span>
+        </button>
+        <button class="side-menu-item" type="button" data-act="open-notes" id="notesMenuBtn">
+          <span class="smi-icon">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5z"/><path d="M15 3v4h4"/><path d="M8 11h8M8 15h8M8 19h5"/></svg>
+          </span>
+          <span class="smi-txt">Catatan</span>
+        </button>
+      </div>
+
+      <div class="side-label">
+        <span>Proyek Tim</span>
+        <span class="count" id="projectCount">0</span>
+      </div>
+
+      <nav class="project-list" id="projectList" aria-label="Daftar proyek"></nav>
+
+      <div class="side-foot">
+        <div class="team-chip">
+          <div class="team-logo" id="teamLogo"></div>
+          <div class="txt">
+            <b id="teamNameFoot">Tim Saya</b>
+            <span>Tersimpan di perangkat ini</span>
+          </div>
+        </div>
+        <button class="icon-btn dark" type="button" data-act="settings" title="Pengaturan" aria-label="Pengaturan">
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.6.7 1.03 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop" data-act="close-sidebar"></div>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main">
+      <div class="mobile-bar">
+        <button class="menu-btn" type="button" data-act="toggle-sidebar" aria-label="Buka menu">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="brand-mini">
+          <span class="mark"><svg class="ico" viewBox="0 0 24 24"><path d="M4 19V10"/><path d="M10 19V5"/><path d="M16 19v-6"/><path d="M22 19H2"/></svg></span>
+          Ruang Tim
+        </div>
+        <div class="spacer"></div>
+        <button class="icon-btn" type="button" data-act="add-project" title="Tambah proyek" aria-label="Tambah proyek" style="background:#fff;border-color:var(--line)">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toastRoot" aria-live="polite"></div>
+  <div id="reportCapture" class="report-capture" aria-hidden="true"></div>
+  <div id="printArea"></div>
+
+  <script src="vendor/html2canvas.min.js"></script>
+  <script src="core.js"></script>
+  <script src="render.js"></script>
+  <script src="modals.js"></script>
+  <script src="forms.js"></script>
+  <script src="logos.js?v=2"></script>
+  <script src="cover.js?v=2"></script>
+  <script src="report.js?v=3"></script>
+  <script src="tasks.js"></script>
+  <script src="notes.js"></script>
+  <script src="events.js"></script>
+  <script src="boot.js"></script>
+</body>
+</html>

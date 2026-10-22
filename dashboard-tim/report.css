@@ -1,0 +1,460 @@
+/* ============================================================
+   Lembar Kerja — desain laporan 1600 x 900 (HD)
+   Semua style di-scope ke .report agar aman dipakai di app & print
+   ============================================================ */
+
+.report {
+  position: relative;
+  width: 1600px;
+  height: 900px;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  background-color: #fdf6ea;
+  background-image:
+    radial-gradient(circle at 88% -6%, rgba(245, 166, 66, .30), rgba(245, 166, 66, 0) 34%),
+    radial-gradient(circle at -8% 108%, rgba(245, 166, 66, .22), rgba(245, 166, 66, 0) 32%),
+    linear-gradient(115deg, rgba(245, 196, 128, 0) 53%, rgba(245, 177, 88, .16) 53.2%, rgba(245, 177, 88, .16) 70%, rgba(245, 177, 88, 0) 70.2%),
+    linear-gradient(115deg, rgba(245, 196, 128, 0) 63%, rgba(245, 177, 88, .10) 63.2%, rgba(245, 177, 88, .10) 82%, rgba(245, 177, 88, 0) 82.2%);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #1c2431;
+  box-sizing: border-box;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.report * { box-sizing: border-box; }
+
+.report::after {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: -118px;
+  height: 190px;
+  background: linear-gradient(180deg, rgba(245, 166, 66, .06), rgba(245, 166, 66, .30));
+  transform: skewY(-3deg);
+  pointer-events: none;
+}
+
+/* ---------- Header ---------- */
+.rp-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 2px 6px 0;
+  min-height: 78px;
+}
+
+.rp-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  line-height: 1.05;
+  padding-bottom: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.rp-title .t-black {
+  font-weight: 800;
+  font-size: calc(41px * var(--rp-scale, 1));
+  letter-spacing: .4px;
+  color: #111827;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 7px;
+  text-decoration-color: #111827;
+}
+
+.rp-title .t-sep {
+  font-weight: 700;
+  font-size: calc(40px * var(--rp-scale, 1));
+  color: #1550a8;
+  opacity: .55;
+}
+
+.rp-title .t-blue {
+  font-weight: 800;
+  font-size: calc(41px * var(--rp-scale, 1));
+  letter-spacing: .3px;
+  color: #0b45a0;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 7px;
+  text-decoration-color: #0b45a0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.rp-logos {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+  padding-top: 2px;
+}
+
+.rp-logos > img {
+  display: block;
+  max-height: 56px;
+  max-width: 260px;
+  object-fit: contain;
+}
+
+/* Logo perusahaan di pojok kanan (Danantara | Asuransi Jasindo) */
+.rp-company {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 13px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .82);
+  border: 1px solid rgba(180, 140, 70, .22);
+  box-shadow: 0 6px 16px rgba(167, 122, 49, .07);
+}
+
+.rp-company img {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.rp-company .logo-danantara { height: 32px; max-width: 210px; }
+.rp-company .logo-jasindo { height: 38px; max-width: 150px; }
+
+.rp-company .sep {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 30px;
+  background: rgba(27, 36, 49, .16);
+}
+
+/* ---------- Kartu timeline ---------- */
+.rp-card {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 26px;
+  box-shadow: 0 14px 34px rgba(167, 122, 49, .14);
+  padding: 18px 26px 8px;
+  flex: 0 0 auto;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-project {
+  margin: 0;
+  color: #f0a23a;
+  font-size: calc(33px * var(--rp-scale, 1));
+  font-weight: 800;
+  letter-spacing: .2px;
+  line-height: 1.15;
+  max-width: 1420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rp-rail {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: 4px;
+}
+
+.rp-line {
+  position: absolute;
+  top: 145px;
+  height: 7px;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.rp-line i { flex: 1 1 0; display: block; }
+
+.rp-node {
+  position: absolute;
+  top: 0;
+  width: var(--nw, 180px);
+  height: 100%;
+}
+
+.rp-dot {
+  position: absolute;
+  top: 148px;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 3px 8px rgba(24, 39, 58, .18);
+  z-index: 3;
+  background: #7c8798;
+}
+
+.rp-node.is-done .rp-dot { background: #2f9e5f; }
+.rp-node.is-active .rp-dot { background: #f5a63b; }
+.rp-node.is-todo .rp-dot { background: #7c8798; }
+
+.rp-stem {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: #c3ccd8;
+  z-index: 2;
+}
+
+.rp-node.is-done .rp-stem { background: #9fd3b4; }
+.rp-node.is-active .rp-stem { background: #f6c983; }
+
+.rp-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--nw, 180px) - 14px);
+  text-align: center;
+  z-index: 2;
+}
+
+.rp-node.up .rp-label { top: 0; height: 110px; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 6px; }
+.rp-node.down .rp-label { top: 182px; height: 118px; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 6px; }
+
+.rp-node.up .rp-stem { top: 116px; height: 16px; }
+.rp-node.down .rp-stem { top: 164px; height: 18px; }
+
+.rp-label b {
+  display: block;
+  font-size: calc(var(--lbl, 19px) * var(--rp-scale, 1));
+  line-height: 1.14;
+  color: #0b45a0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.rp-label small {
+  display: block;
+  margin-top: 4px;
+  font-size: calc(12.5px * var(--rp-scale, 1));
+  font-weight: 600;
+  color: #8b96a5;
+  letter-spacing: .2px;
+}
+
+.rp-node.is-active .rp-label small { color: #d8860f; }
+
+/* ---------- Baris bawah ---------- */
+.rp-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 16px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.rp-shot {
+  flex: 0 0 236px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Gambar proyek di atas: kartu putih, seluruh gambar tetap terlihat */
+.rp-shot .project-shot {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 10px 24px rgba(167, 122, 49, .13);
+  position: relative;
+}
+
+.rp-shot .project-shot.is-placeholder {
+  background-image: linear-gradient(180deg, #fff, #f7fbff);
+}
+
+.rp-shot .shot-preload { display: none; }
+
+.rp-shot .project-shot .ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  padding: 10px;
+}
+
+.rp-shot .project-shot .ph b {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+  color: #0b45a0;
+}
+
+.rp-shot .project-shot .ph span {
+  font-size: 9px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: #98a4b5;
+}
+
+/* Baris perangkat di bawah: PNG transparan, tanpa bingkai/kartu */
+.rp-shot .mockup-shot {
+  flex: 0 0 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  line-height: 0;
+}
+
+.rp-shot .mockup-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rp-shot .mockup-shot.is-placeholder {
+  height: 78px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .55);
+  border: 1px dashed rgba(11, 69, 160, .18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.rp-shot .mockup-shot.is-placeholder .ph {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.rp-shot .mockup-shot.is-placeholder .ph b {
+  font-size: 18px;
+  color: #0b45a0;
+}
+
+.rp-shot .mockup-shot.is-placeholder .ph span {
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #98a4b5;
+}
+
+.rp-box {
+  flex: 1 1 0;
+  min-width: 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(167, 122, 49, .13);
+  padding: 14px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+}
+
+.rp-box::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 30px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  transform: rotate(45deg);
+  border-radius: 0 0 5px 0;
+}
+
+.rp-box h3 {
+  margin: 0 0 8px;
+  font-size: calc(23px * var(--rp-scale, 1));
+  font-weight: 800;
+  color: #f0b25a;
+  letter-spacing: .2px;
+  line-height: 1.1;
+}
+
+.rp-box .body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  font-size: calc(15px * var(--rp-scale, 1));
+  line-height: 1.5;
+  color: #3b4656;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Footer ---------- */
+.rp-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 0 8px 2px;
+}
+
+.rp-names {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: calc(20px * var(--rp-scale, 1));
+  font-weight: 700;
+  color: #1b2431;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rp-names .dot { color: #c08a3c; padding: 0 9px; font-weight: 700; }
+
+/* Versi skala untuk preview di aplikasi */
+.report-scaler {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f4e6cd;
+}
+
+.report-scaler .report {
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
